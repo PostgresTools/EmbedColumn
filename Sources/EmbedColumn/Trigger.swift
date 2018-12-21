@@ -38,7 +38,7 @@ public class Trigger {
 			FROM pg_catalog.pg_trigger t
 			INNER JOIN pg_catalog.pg_class c ON (c.oid = t.tgrelid)
 			INNER JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
-			WHERE t.tgrelid IN(select unnest(OIDS_TABLE)) AND (NOT t.tgisinternal OR (t.tgisinternal AND t.tgenabled = 'D'))
+			WHERE t.tgrelid = \(Oid) AND (NOT t.tgisinternal OR (t.tgisinternal AND t.tgenabled = 'D'))
 			ORDER BY 1
 			"""
 
